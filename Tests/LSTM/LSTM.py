@@ -112,12 +112,13 @@ with tf.Session() as sess:
     # Calculate accuracy for 128 mnist test images
     test_len = 128
     test_data = mnist.test.images[:test_len].reshape((-1, timesteps, num_input))
+    print('Test data sahpe: ', test_data.shape, 'Number of dimentions in the test data: ', test_data.ndim)
     test_label = mnist.test.labels[:test_len]
     print("Testing Accuracy:", \
         sess.run(accuracy, feed_dict={X: test_data, Y: test_label}))
 
 
-    fi = ti.TensorFI(sess, name = "rnn", logLevel = 10, disableInjections = False)
+    fi = ti.TensorFI(sess, name = "rnn", logLevel = 20, disableInjections = False)
     print("Testing Accuracy(with injection):", \
         sess.run(accuracy, feed_dict={X: test_data, Y: test_label}))
 
